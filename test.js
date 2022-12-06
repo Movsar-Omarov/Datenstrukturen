@@ -2,7 +2,7 @@ const stack = require("./stack.js"),
 queue = require("./queue.js")
 
 
-let copy = new queue.Queue(100, 1)
+let copy = new queue.Queue(4, "circular", 1)
 
 console.log(copy.GetDatas)
 
@@ -15,3 +15,6 @@ copy.Dequeue()
 
 console.log("dequeue ", copy.GetDatas, copy.rear, copy.front)
 
+copy.Enqueue(1)
+
+console.log(copy.rear)

@@ -23,7 +23,7 @@ class Stack {
 
     Push(...datas) {
         for (const data of datas) {
-            if (this.top >= this.max) return 
+            if (this.content.length >= this.max) return 
                 
             this.content.push(data)
             this.top++
