@@ -2,7 +2,7 @@ const childAndParent = (tree, start) => {
     let leftChildIndex = start*2+1,
     rightChildIndex = leftChildIndex+1,
     parentIndex = start
-    if (tree.includes(undefined)) return {child: parentIndex, parent: parentIndex} 
+    
     while (tree[leftChildIndex] <= tree[parentIndex] && tree[rightChildIndex] <= tree[parentIndex] && parentIndex < tree.length) {
         parentIndex++
         
