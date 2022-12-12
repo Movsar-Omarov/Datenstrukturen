@@ -2,19 +2,7 @@ class Stack {
     constructor(max, ...data) {
         this.content = [...data]
         this.top = this.content ? -1 + this.content.length : -1
-        this.isEmpty = this.top == -1 ? true : false
         this.max = max
-        this.isFull = this.top >= this.max ? true : false
-
-        // this property updates isEmpty and isFull 
-
-        this.controller = setInterval(() => {
-            if (this.top <= -1) this.isEmpty = true
-            else this.isEmpty = false
-
-            if (this.top >= this.max) this.isFull = true
-            else this.isFull = false
-        }, 1)
     }
 
     get GetDatas() {
@@ -40,6 +28,14 @@ class Stack {
             this.content.pop()
             this.top--
         }
+    }
+
+    get isEmpty() {
+        return this.top == -1
+    }
+
+    get isFull() {
+        return this.top == this.max
     }
 }
 

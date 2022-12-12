@@ -1,20 +1,16 @@
 const stack = require("./stack.js"),
 queue = require("./queue.js")
 
+let copy = new queue.PriorityQueue(2, 32, 3401, 34980)
 
-let copy = new queue.Queue(4, "circular", 1)
+copy.Insert(10938, 10984, 3404)
 
-console.log(copy.GetDatas)
+console.log("insert ", copy.heapList)
 
+copy.Delete(32, 20)
 
-copy.Enqueue(1, 34, 21)
+console.log("delete ", copy.heapList)
 
-console.log("enqueue ", copy.GetDatas, copy.rear, copy.front)
+console.log(copy.Peek)
 
-copy.Dequeue()
-
-console.log("dequeue ", copy.GetDatas, copy.rear, copy.front)
-
-copy.Enqueue(1)
-
-console.log(copy.rear)
+console.log("extract ", copy.Extract() == 34980)
