@@ -1,16 +1,22 @@
 const stack = require("./stack.js"),
 queue = require("./queue.js")
 
-let copy = new queue.PriorityQueue(2, 32, 3401, 34980)
+let copy = new queue.Deque("IRD", 100, "front")
 
-copy.Insert(10938, 10984, 3404)
+console.log("start ", copy.content, copy.front, copy.rear)
 
-console.log("insert ", copy.heapList)
+copy.InsertFromFront(1, 2, 3, 4)
 
-copy.Delete(32, 20)
+console.log("insert from front ", copy.content)
 
-console.log("delete ", copy.heapList)
+copy.InsertFromRear(3094, 94, 293)
 
-console.log(copy.Peek)
+console.log("insert from rear ", copy.content)
 
-console.log("extract ", copy.Extract() == 34980)
+copy.DeleteFromFront()
+
+console.log("delete from front ", copy.content)
+
+copy.DeleteFromRear()
+
+console.log("delete from rear ", copy.content)

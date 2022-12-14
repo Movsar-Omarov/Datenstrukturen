@@ -2,37 +2,47 @@ const stack = require("./stack.js")
 const { Heapify } = require('./help.js')
 
 class Queue extends stack.Stack {
-    constructor(max, type, ...data) {
-        super(max, ...data)
+    constructor(max, type) {
+        super(max)
         
 
         // property of circular queue
-        this.rear = this.top
-        this.front = this.heapList ? this.heapList.length-1 : -1
+        this.rear = -1
+        this.front = -1
         this.type = type
+    }
+
+    get GetIsFull() {
+        let elementCounter = 0
+
+        for (let index = 0; index < this.max; index++) {
+            if (this.content[index]) elementCounter++
+        }
+
+        return elementCounter == this.max
     }
 
     Enqueue(...data) {
         for (const element of data) {
-            if (this.heapList.length >= this.max) break
+            if (this.GetIsFull) break
             
             this.rear++
 
             if (this.type == "circular" && this.rear >= this.max) this.rear = 0
 
-            this.heapList[this.rear] = element
+            this.content[this.rear] = element
         }
     }
 
     Dequeue(numbers = 1) {
         for (let remove = 0; remove < numbers; remove++) {
-            if (this.heapList.length <= 0) {
+            if (this.content.length <= 0) {
                 this.front = -1
                 this.rear = -1
                 break
             }
 
-            this.heapList.splice(this.front, 1)
+            this.content.splice(this.front, 1)
             this.front++
 
             if (this.type == "circular" && this.front >= this.max) this.front = 0
@@ -41,8 +51,8 @@ class Queue extends stack.Stack {
 }
 
 class PriorityQueue extends Queue {
-    constructor(...data) {
-        super("", "", ...data)
+    constructor() {
+        super("", "")
 
         this.heapList = Heapify(this.content)
     }
@@ -85,7 +95,69 @@ class PriorityQueue extends Queue {
     }
 }
 
+class Deque extends Queue {
+    constructor(type, max, whichEnd) {
+        super(max, type)
+        
+        this.whichEnd = whichEnd
+    }
+
+    InsertFromFront(...datas) {
+        // console.log("datas ", datas)
+        if (this.type != "ORD" && this.whichEnd != "front") return
+        for (const element of datas) {
+            if (this.content.length <= 0) {
+                console.log("one", 1, element)
+                this.front++
+                this.rear++
+                this.content[this.front] = element
+                continue
+            }
+            if (this.GetIsFull) {
+                console.log("break", 1, element)
+                break
+            }
+
+            this.front--
+
+            if (this.front < 0) {
+                console.log("negative", 1, element)
+                this.front = this.max - 1
+            }
+
+            this.content[this.front] = element
+        }
+    }
+
+    DeleteFromRear(numbers = 1) {
+        if (this.type != "IRD" && this.whichEnd != "rear") return
+        for (let remove = 0; remove < numbers; remove++) {
+            if (this.content.length <= 0){ 
+                this.rear = -1
+                this.front = -1
+                break
+            }
+
+            this.content.splice(this.rear, 1)
+            this.rear--
+
+            if (this.rear >= this.content.length) this.rear = 0
+        }
+    }
+
+    InsertFromRear(...datas) {
+        if (this.type != "ORD" && this.whichEnd != "rear") return
+        this.Enqueue(...datas)
+    }
+
+    DeleteFromFront(numbers = 1) {
+        if (this.type != "IRD" && this.whichEnd != "front") return
+        this.Dequeue(numbers)
+    }
+}
+
 module.exports = {
     Queue: Queue,
-    PriorityQueue: PriorityQueue
+    PriorityQueue: PriorityQueue,
+    Deque: Deque
 }
