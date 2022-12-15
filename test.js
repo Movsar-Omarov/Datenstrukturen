@@ -1,22 +1,19 @@
 const stack = require("./stack.js"),
-queue = require("./queue.js")
+queue = require("./queue.js"),
+linkedList = require("./linked-list.js")
 
-let copy = new queue.Deque("IRD", 100, "front")
+let copy = new linkedList.LinkedList("double circular", "Pizza", "Salami", "Mozarella")
 
-console.log("start ", copy.content, copy.front, copy.rear)
+console.log("start ", copy.GetDatas)
 
-copy.InsertFromFront(1, 2, 3, 4)
+copy.AppendElement("Wurst", 0)
 
-console.log("insert from front ", copy.content)
+console.log("append ", copy.GetDatas)
 
-copy.InsertFromRear(3094, 94, 293)
+copy.DeleteElements("Pizza")
 
-console.log("insert from rear ", copy.content)
+console.log("delete ", copy.GetDatas)
 
-copy.DeleteFromFront()
+copy.DeleteElements("Banane")
 
-console.log("delete from front ", copy.content)
-
-copy.DeleteFromRear()
-
-console.log("delete from rear ", copy.content)
+console.log("delete 2 ", copy.GetDatas)
