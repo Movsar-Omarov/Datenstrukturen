@@ -1,19 +1,18 @@
 const stack = require("./stack.js"),
 queue = require("./queue.js"),
-linkedList = require("./linked-list.js")
+linkedList = require("./linked-list.js"),
+{HashTable} = require("./hash-table.js")
 
-let copy = new linkedList.LinkedList("double circular", "Pizza", "Salami", "Mozarella")
+let copy = new HashTable("Ron", "Movsar", "Bilal")
 
-console.log("start ", copy.GetDatas)
+console.log(copy.table)
 
-copy.AppendElement("Wurst", 0)
+console.log(copy.Search("Ron"))
 
-console.log("append ", copy.GetDatas)
+copy.AddItem("Anna")
 
-copy.DeleteElements("Pizza")
+console.log("add ", copy.table)
 
-console.log("delete ", copy.GetDatas)
+copy.DeleteItem("Anna", "Bilal")
 
-copy.DeleteElements("Banane")
-
-console.log("delete 2 ", copy.GetDatas)
+console.log("delete ", copy.table)
