@@ -69,8 +69,11 @@ function Hash(string) {            
     return hash
 }
 
+function xor(a, b) {return (!a && b) || (a && !b)}
+
 module.exports = {
     Heapify: Heapify,
     Hash: Hash,
-    Chaining: Chaining
+    Chaining: Chaining,
+    xor: xor
 }

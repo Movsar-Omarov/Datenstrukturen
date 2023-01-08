@@ -1,18 +1,14 @@
 const stack = require("./stack.js"),
 queue = require("./queue.js"),
 linkedList = require("./linked-list.js"),
-{HashTable} = require("./hash-table.js")
+{HashTable} = require("./hash-table.js"),
+binaryNode = require("./tree.js"),
+{BSTNode} = require("./bst.js")
 
-let copy = new HashTable("Ron", "Movsar", "Bilal")
+const copy = BSTNode.CreateBinaryTree(0, BSTNode)
 
-console.log(copy.table)
+copy.InsertNode(200)
 
-console.log(copy.Search("Ron"))
+copy.InsertNode(100)
 
-copy.AddItem("Anna")
-
-console.log("add ", copy.table)
-
-copy.DeleteItem("Anna", "Bilal")
-
-console.log("delete ", copy.table)
+console.log(copy.SearchBSTNode(100))
