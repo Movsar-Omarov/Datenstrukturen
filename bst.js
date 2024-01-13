@@ -17,7 +17,6 @@ class BSTNode extends BinaryNode {
     }
 
     SearchBSTNode(item, node = this) {
-        
         if (!node) {
             console.log(`There isn't ${item}`)
             return null
@@ -26,7 +25,11 @@ class BSTNode extends BinaryNode {
 
         if (item > node.data) return this.SearchBSTNode(item, node.rightChild)
         return this.SearchBSTNode(item, node.leftChild)
-    } 
+    }
+
+    DeleteBSTNode(item, node = this) {
+        
+    }
 }
 
 module.exports = {
